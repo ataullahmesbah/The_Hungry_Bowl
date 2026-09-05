@@ -1,0 +1,152 @@
+@import 'tailwindcss';
+
+/*
+  The Hungry Bowl design tokens.
+  Warm, food-forward palette: charred espresso, saffron, cream.
+  Every colour used in the app comes from here so a client rebrand is a
+  one-file change.
+*/
+@theme {
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #faf5ec;
+  --color-cream-200: #f2e9d9;
+  --color-cream-300: #e6d7bd;
+
+  --color-espresso-50: #f6f4f2;
+  --color-espresso-100: #e7e2dd;
+  --color-espresso-200: #cbc1b8;
+  --color-espresso-400: #8a7a6c;
+  --color-espresso-600: #4d4038;
+  --color-espresso-700: #3a2f28;
+  --color-espresso-800: #2a221c;
+  --color-espresso-900: #1b1512;
+  --color-espresso-950: #0f0b09;
+
+  --color-saffron-50: #fff8ec;
+  --color-saffron-100: #ffefd2;
+  --color-saffron-200: #ffdca4;
+  --color-saffron-300: #ffc36b;
+  --color-saffron-400: #ffa42f;
+  --color-saffron-500: #f9860a;
+  --color-saffron-600: #dd6602;
+  --color-saffron-700: #b74806;
+  --color-saffron-800: #93390c;
+  --color-saffron-900: #79300d;
+
+  --color-basil-500: #3f9142;
+  --color-basil-600: #2f7333;
+  --color-chilli-500: #d8452c;
+  --color-chilli-600: #b93520;
+
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --radius-card: 0.875rem;
+}
+
+:root {
+  color-scheme: light;
+  --hb-page: var(--color-cream-50);
+  --hb-ink: var(--color-espresso-900);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--hb-page);
+  color: var(--hb-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Visible keyboard focus everywhere — never remove it. */
+:focus-visible {
+  outline: 2px solid var(--color-saffron-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-saffron-200);
+  color: var(--color-espresso-900);
+}
+
+/* Rich-text output from the CMS editor. */
+.prose-hb {
+  line-height: 1.75;
+}
+.prose-hb h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-espresso-900);
+}
+.prose-hb h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-hb p { margin-bottom: 1rem; }
+.prose-hb ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose-hb ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose-hb li { margin-bottom: 0.35rem; }
+.prose-hb a { color: var(--color-saffron-700); text-decoration: underline; }
+.prose-hb strong { font-weight: 600; }
+.prose-hb blockquote {
+  border-left: 3px solid var(--color-saffron-300);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-espresso-600);
+  margin-bottom: 1rem;
+}
+
+/* Thin scrollbars inside dashboard panels. */
+.scroll-slim::-webkit-scrollbar { width: 8px; height: 8px; }
+.scroll-slim::-webkit-scrollbar-track { background: transparent; }
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: var(--color-espresso-200);
+  border-radius: 999px;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover { background: var(--color-espresso-400); }
+
+@keyframes hb-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(249, 134, 10, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(249, 134, 10, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 134, 10, 0); }
+}
+.animate-ring { animation: hb-pulse-ring 1.8s ease-out infinite; }
+
+@keyframes hb-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: hb-fade-up 0.35s ease-out both; }
+
+/* Kitchen display runs full-screen on a wall monitor. */
+.kds-dark {
+  background: var(--color-espresso-950);
+  color: var(--color-cream-100);
+  color-scheme: dark;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-sheet { box-shadow: none !important; border: none !important; }
+}

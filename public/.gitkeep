@@ -1,0 +1,3 @@
+Static files placed here are served from the site root, e.g. public/favicon.ico
+is available at /favicon.ico. Menu photos and gallery images do NOT belong here
+— those are uploaded through the dashboard and served from Cloudinary.
